@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NeuroAdapt — Phase 1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<div id="devPanel" style="
+position: fixed;
+right: 20px;
+bottom: 20px;
+width: 260px;
+background: rgba(0,0,0,0.9);
+border: 1px solid #00f5ff;
+padding: 15px;
+font-family: monospace;
+font-size: 12px;
+color: #00f5ff;
+display: none;
+z-index: 500;
+">
+  <div><strong>DEV MODE — COGNITIVE ENGINE</strong></div>
+  <hr>
+  <div>Reaction Score: <span id="devReaction">—</span></div>
+  <div>Typing Score: <span id="devTyping">—</span></div>
+  <div>Accuracy Score: <span id="devAccuracy">—</span></div>
+  <div>Stability: <span id="devStability">—</span></div>
+  <hr>
+  <div><strong>Cognitive Score:</strong> <span id="devCognitive">—</span></div>
+  <div>Flow State: <span id="devFlow">NO</span></div>
+  <div id="comboDisplay">Combo: x1</div>
+  <hr>
+  <div><strong>Lifetime Stats</strong></div>
+  <div>Sessions: <span id="devSessions">0</span></div>
+  <div>Avg Cognitive: <span id="devAvgCog">0</span></div>
+  <div>Peak Cognitive: <span id="devPeakCog">0</span></div>
+  <div>Best Rank: <span id="devBestClass">—</span></div>
+  <div>Level: <span id="devLevel">1</span></div>
+  <div>Next Level At: <span id="devNextLevel">—</span></div>
+  <div>Progress: <span id="devProgress">0%</span></div>
+</div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<canvas id="particleCanvas"></canvas>
+<div class="combo-flash" id="comboFlash"></div>
+
+<div class="game-container">
+
+  <!-- Game Over Overlay -->
+  <div id="gameOverlay">
+    <div class="overlay-title">GAME OVER</div>
+
+    <div class="overlay-stats">
+      <div class="overlay-stat">
+        <div class="overlay-stat-num" id="finalScore">0</div>
+        <div class="overlay-stat-label">FINAL SCORE</div>
+      </div>
+
+      <div class="overlay-stat">
+        <div class="overlay-stat-num" id="finalStreak">0</div>
+        <div class="overlay-stat-label">BEST STREAK</div>
+      </div>
+
+      <div class="overlay-stat">
+        <div class="overlay-stat-num" id="finalWPM">0</div>
+        <div class="overlay-stat-label">AVG WPM</div>
+      </div>
+
+      <div class="overlay-stat">
+        <div class="overlay-stat-num" id="finalAcc">0%</div>
+        <div class="overlay-stat-label">ACCURACY</div>
+      </div>
+
+      <div id="sessionResult">
+        <h2>Session Analysis</h2>
+        <p id="sessionType"></p>
+      </div>
+    </div>
+
+    <button id="restartBtn"><span>RESTART</span></button>
+  </div>
+
+  <div class="header">
+    <div class="logo">NEUROADAPT</div>
+    <div class="phase-tag">⬡ PHASE 1 — COGNITIVE TRAINING ⬡</div>
+  </div>
+
+  <div class="word-arena">
+    <div id="wordDisplay" class="idle">// AWAITING INPUT //</div>
+  </div>
+
+  <div class="timer-bar-wrap">
+    <div id="timerBar"></div>
+  </div>
+
+  <div class="streak-wrap">
+    <div id="streakDisplay">⚡ STREAK × <span id="streakCount">0</span></div>
+  </div>
+
+  <div class="input-wrap">
+    <input type="text" id="wordInput" placeholder="INITIALIZE TO BEGIN..." autocomplete="off" disabled />
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-label">Score</div>
+      <div class="stat-value"><span id="score">0</span><span class="stat-unit">pts</span></div>
+    </div>
+
+    <div class="stat-card accent-magenta">
+      <div class="stat-label">Time Left</div>
+      <div class="stat-value"><span id="timeLeft">5</span><span class="stat-unit">s</span></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="metrics-row">
+    <div class="metric-card">
+      <div class="metric-label">Reaction</div>
+      <div class="metric-value"><span id="reaction">—</span></div>
+    </div>
+
+    <div class="metric-card">
+    <div class="divider"></div>
+
+    <div class="graph-wrap">
+        <div class="metric-label">Cognitive Trend</div>
+        <canvas id="cogChart"></canvas>
+    </div>
+      <div class="metric-label">Accuracy</div>
+      <div class="metric-value"><span id="accuracy">—</span></div>
+    </div>
+
+    <div class="metric-card">
+      <div class="metric-label">WPM</div>
+      <div class="metric-value"><span id="wpm">—</span></div>
+    </div>
+  </div>
+  <div class="control-panel">
+  <button id="pauseBtn" class="cyber-btn">⏸ PAUSE</button>
+  <button id="exportBtn" class="cyber-btn secondary">⤓ EXPORT DATA</button>
+    </div>
+  <button id="startBtn"><span>▶ INITIALIZE SEQUENCE</span></button>
+  
+</div>
+
+<!-- External JS -->
+<script src="game.js"></script>
+</body>
+</html>
